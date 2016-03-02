@@ -28,11 +28,14 @@
             <string>///init
 //The player's mask or MASTER object
 //this object moves and draws sprites over itself
-initialize_movement_entity(.5,.5,0,0,objSolidParent);
+initialize_movement_entity(1,.5,0,0,objSolidParent);
 spriteDirection = "right"; //which set of sprites to use
 
-upperState = "idle";
+//aim direction
+upperState = "idle"; //states: idle/level/angle/up
 
+//weapon type
+weaponType = "none" //states: none/cat/alk/par/laz
 </string>
           </argument>
         </arguments>
@@ -63,10 +66,95 @@ jumpstart = global.jumpstart;
 jumpend = global.jumpend;
 
 //horizontal input
-enable_movement_run_horizontal(1,3,rightkey,leftkey);
+enable_movement_run_horizontal(1,4,rightkey,leftkey);
 
 //jump input
-enable_movement_jump(6,jumpstart,jumpend);
+enable_movement_jump(13,jumpstart,jumpend);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///aiming
+//input
+aimup = global.aimup;
+aimdown = global.aimdown;
+
+//aiming
+if aimup {
+    switch(upperState){
+        case "idle": 
+        case "level": upperState = "angle"; break;
+        case "angle": upperState = "up"; break;
+    }
+}
+
+if aimdown {
+    switch(upperState){
+        case "up": upperState = "angle"; break;
+        case "angle": upperState = "level"; break;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///firing
+//controls
+firekey = global.firekey;
+
+//check weapon type
+var bullObj = objProjectile;
+var bullspeed = 10;
+
+if firekey{
+    switch(upperState){
+        case "idle": 
+            upperState = "level";
+        case "level":
+            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,180);
+            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,0);
+            break;
+        case "angle":
+            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,135);
+            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,45);
+            break;
+        case "up":
+            scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,90);
+    }
+}
+
 </string>
           </argument>
         </arguments>
