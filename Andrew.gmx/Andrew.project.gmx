@@ -11,6 +11,9 @@
     <sprite>sprites\sprAndrewLeftShootDiag</sprite>
     <sprite>sprites\sprAndrewLeftShootUp</sprite>
     <sprite>sprites\sprAndrewRight</sprite>
+    <sprite>sprites\sprAndrewRightShoot</sprite>
+    <sprite>sprites\sprAndrewRightShootDiag</sprite>
+    <sprite>sprites\sprAndrewRightShootUp</sprite>
     <sprite>sprites\sprAndrewBoundingBox</sprite>
     <sprite>sprites\sprWall</sprite>
     <sprite>sprites\sprAndrewUnderLeftIdle</sprite>
