@@ -20,14 +20,14 @@
   <width>48</width>
   <height>48</height>
   <frames>
-    <frame index="0">images\sprAndrewShootLeft_0.png</frame>
-    <frame index="1">images\sprAndrewShootLeft_1.png</frame>
-    <frame index="2">images\sprAndrewShootLeft_2.png</frame>
-    <frame index="3">images\sprAndrewShootLeft_3.png</frame>
-    <frame index="4">images\sprAndrewShootLeft_4.png</frame>
-    <frame index="5">images\sprAndrewShootLeft_5.png</frame>
-    <frame index="6">images\sprAndrewShootLeft_6.png</frame>
-    <frame index="7">images\sprAndrewShootLeft_7.png</frame>
-    <frame index="8">images\sprAndrewShootLeft_8.png</frame>
+    <frame index="0">images\sprAndrewLeftShoot_0.png</frame>
+    <frame index="1">images\sprAndrewLeftShoot_1.png</frame>
+    <frame index="2">images\sprAndrewLeftShoot_2.png</frame>
+    <frame index="3">images\sprAndrewLeftShoot_3.png</frame>
+    <frame index="4">images\sprAndrewLeftShoot_4.png</frame>
+    <frame index="5">images\sprAndrewLeftShoot_5.png</frame>
+    <frame index="6">images\sprAndrewLeftShoot_6.png</frame>
+    <frame index="7">images\sprAndrewLeftShoot_7.png</frame>
+    <frame index="8">images\sprAndrewLeftShoot_8.png</frame>
   </frames>
 </sprite>

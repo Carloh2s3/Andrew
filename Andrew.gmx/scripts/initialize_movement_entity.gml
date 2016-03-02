@@ -5,10 +5,10 @@
     any object you would like using the movement functions.
 */
 
-hspd = 0;
-vspd = 0;
-spd = 0;
-dir = 0;
+hspd = 0; //horizontal potential movement
+vspd = 0; //vertical potential movement
+spd = 0; //set value for set speed set_movement_direction_speed
+dir = 0; //angular direction for for set_movement_direction
 
 grav = argument[0]; // Gravity amount (positive is down).
 fric = argument[1]; // Friction amount (Only applies on ground for Platform Games).

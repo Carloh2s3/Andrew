@@ -7,28 +7,71 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sprAndrewLeft</sprite>
-    <sprite>sprites\sprAndrewShootLeft</sprite>
-    <sprite>sprites\sprAndrewShootDiagLeftUp</sprite>
-    <sprite>sprites\sprAndredShootUp</sprite>
+    <sprite>sprites\sprAndrewLeftShoot</sprite>
+    <sprite>sprites\sprAndrewLeftShootDiag</sprite>
+    <sprite>sprites\sprAndrewLeftShootUp</sprite>
     <sprite>sprites\sprAndrewRight</sprite>
     <sprite>sprites\sprAndrewBoundingBox</sprite>
     <sprite>sprites\sprWall</sprite>
+    <sprite>sprites\sprAndrewUnderLeftIdle</sprite>
+    <sprite>sprites\sprAndrewUnderLeftWalk</sprite>
+    <sprite>sprites\sprAndrewUnderLeftJump</sprite>
+    <sprite>sprites\sprAndrewUnderLeftFall</sprite>
+    <sprite>sprites\sprAndrewUnderRightIdle</sprite>
+    <sprite>sprites\sprAndrewUnderRightWalk</sprite>
+    <sprite>sprites\sprAndrewUnderRightJump</sprite>
+    <sprite>sprites\sprAndrewUnderRightFall</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="not used">
-      <script>scripts\initialize_movement_entity.gml</script>
-      <script>scripts\enable_movement_platform_sprite.gml</script>
-      <script>scripts\approach.gml</script>
       <script>scripts\credits.gml</script>
-      <script>scripts\scrSlopes.gml</script>
     </scripts>
+    <scripts name="helper scripts">
+      <script>scripts\approach.gml</script>
+    </scripts>
+    <scripts name="Movement Entity Setup Scripts">
+      <script>scripts\initialize_movement_entity.gml</script>
+      <script>scripts\move_movement_entity.gml</script>
+    </scripts>
+    <scripts name="Motion Scripts">
+      <script>scripts\add_movement_horizontal_vertical.gml</script>
+      <script>scripts\set_movement_horizontal_vertical.gml</script>
+      <script>scripts\add_movement_direction_acceleration.gml</script>
+      <script>scripts\set_movement_direction_speed.gml</script>
+    </scripts>
+    <scripts name="Set Property scripts">
+      <script>scripts\set_movement_collision_object.gml</script>
+      <script>scripts\set_movement_friction.gml</script>
+      <script>scripts\set_movement_bounce.gml</script>
+      <script>scripts\set_movement_gravity.gml</script>
+    </scripts>
+    <scripts name="Action scripts">
+      <script>scripts\enable_movement_platform_actions.gml</script>
+      <script>scripts\enable_movement_jump.gml</script>
+      <script>scripts\enable_movement_run_horizontal.gml</script>
+      <script>scripts\enable_movement_run_horizontal_axis.gml</script>
+      <script>scripts\enable_movement_run_vertical.gml</script>
+      <script>scripts\enable_movement_run_vertical_axis.gml</script>
+      <script>scripts\enable_movement_air_jump.gml</script>
+      <script>scripts\enable_movement_wall_jump.gml</script>
+    </scripts>
+    <scripts name="Sprite Scripts">
+      <script>scripts\change_sprites.gml</script>
+      <scripts name="Animation Scripts">
+        <script>scripts\animation_end.gml</script>
+        <script>scripts\animation_hit_frame.gml</script>
+      </scripts>
+    </scripts>
+    <script>scripts\enable_movement_platform_sprites.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\objCharPhysics</object>
     <object>objects\objSolidParent</object>
     <object>objects\objWall</object>
+    <object>objects\objPlayer</object>
+    <object>objects\objCamera</object>
+    <object>objects\objControls</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomPlatTest</room>
