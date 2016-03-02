@@ -24,11 +24,18 @@
     <sprite>sprites\sprAndrewUnderRightWalk</sprite>
     <sprite>sprites\sprAndrewUnderRightJump</sprite>
     <sprite>sprites\sprAndrewUnderRightFall</sprite>
-    <sprite>sprites\sprBulletPotato</sprite>
-    <sprite>sprites\sprBulletCatalyst</sprite>
-    <sprite>sprites\sprBulletAlkalyst</sprite>
-    <sprite>sprites\sprBulletParalyst</sprite>
-    <sprite>sprites\sprBulletLazaryst</sprite>
+    <sprites name="weapon">
+      <sprites name="cannon">
+        <sprite>sprites\sprBulletPotato</sprite>
+        <sprite>sprites\sprBulletCatalyst</sprite>
+        <sprite>sprites\sprBulletAlkalyst</sprite>
+        <sprite>sprites\sprBulletParalyst</sprite>
+        <sprite>sprites\sprBulletLazaryst</sprite>
+        <sprite>sprites\sprBulletPotatoCharged</sprite>
+        <sprite>sprites\sprBulletCatalystCharged</sprite>
+        <sprite>sprites\sprBulletAlkalystCharged</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
