@@ -28,7 +28,7 @@
             <string>///init
 //The player's mask or MASTER object
 //this object moves and draws sprites over itself
-initialize_movement_entity(.5,.5,0,0,objSolidParent);
+initialize_movement_entity(1,.5,0,0,objSolidParent);
 spriteDirection = "right"; //which set of sprites to use
 
 //aim direction
@@ -66,10 +66,10 @@ jumpstart = global.jumpstart;
 jumpend = global.jumpend;
 
 //horizontal input
-enable_movement_run_horizontal(1,3,rightkey,leftkey);
+enable_movement_run_horizontal(1,4,rightkey,leftkey);
 
 //jump input
-enable_movement_jump(6,jumpstart,jumpend);
+enable_movement_jump(13,jumpstart,jumpend);
 </string>
           </argument>
         </arguments>
@@ -136,21 +136,22 @@ firekey = global.firekey;
 
 //check weapon type
 var bullObj = objProjectile;
+var bullspeed = 10;
 
 if firekey{
     switch(upperState){
         case "idle": 
             upperState = "level";
         case "level":
-            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x,y,6,180);
-            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x,y,6,0);
+            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,180);
+            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,0);
             break;
         case "angle":
-            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x,y,6,135);
-            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x,y,6,45);
+            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,135);
+            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,45);
             break;
         case "up":
-            scr_create_position_speed_direction(bullObj,x,y,6,90);
+            scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,90);
     }
 }
 

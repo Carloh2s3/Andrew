@@ -63,8 +63,8 @@ global.rightkey = keyboard_check(ord("D")); //right axis/right dpad
 global.jumpstart = keyboard_check_pressed(vk_space); //left face
 global.jumpend = keyboard_check_released(vk_space); //left face
 
-global.aimup = keyboard_check(ord("W")); //right trigger
-global.aimdown = keyboard_check(ord("S")); //left trigger
+global.aimup = keyboard_check_pressed(ord("W")); //right trigger
+global.aimdown = keyboard_check_pressed(ord("S")); //left trigger
 
 global.firekey = keyboard_check_pressed(ord("J")); //down face
 </string>
