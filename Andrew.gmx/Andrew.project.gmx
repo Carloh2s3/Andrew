@@ -24,6 +24,7 @@
     <sprite>sprites\sprAndrewUnderRightWalk</sprite>
     <sprite>sprites\sprAndrewUnderRightJump</sprite>
     <sprite>sprites\sprAndrewUnderRightFall</sprite>
+    <sprite>sprites\sprBulletPotato</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
