@@ -20,13 +20,13 @@
   <width>16</width>
   <height>16</height>
   <frames>
-    <frame index="0">images\sprBulletPotato_0.png</frame>
-    <frame index="1">images\sprBulletPotato_1.png</frame>
-    <frame index="2">images\sprBulletPotato_2.png</frame>
-    <frame index="3">images\sprBulletPotato_3.png</frame>
-    <frame index="4">images\sprBulletPotato_4.png</frame>
-    <frame index="5">images\sprBulletPotato_5.png</frame>
-    <frame index="6">images\sprBulletPotato_6.png</frame>
-    <frame index="7">images\sprBulletPotato_7.png</frame>
+    <frame index="0">images\sprBulletCatalyst_0.png</frame>
+    <frame index="1">images\sprBulletCatalyst_1.png</frame>
+    <frame index="2">images\sprBulletCatalyst_2.png</frame>
+    <frame index="3">images\sprBulletCatalyst_3.png</frame>
+    <frame index="4">images\sprBulletCatalyst_4.png</frame>
+    <frame index="5">images\sprBulletCatalyst_5.png</frame>
+    <frame index="6">images\sprBulletCatalyst_6.png</frame>
+    <frame index="7">images\sprBulletCatalyst_7.png</frame>
   </frames>
 </sprite>

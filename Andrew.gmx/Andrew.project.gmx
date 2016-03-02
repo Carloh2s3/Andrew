@@ -25,6 +25,10 @@
     <sprite>sprites\sprAndrewUnderRightJump</sprite>
     <sprite>sprites\sprAndrewUnderRightFall</sprite>
     <sprite>sprites\sprBulletPotato</sprite>
+    <sprite>sprites\sprBulletCatalyst</sprite>
+    <sprite>sprites\sprBulletAlkalyst</sprite>
+    <sprite>sprites\sprBulletParalyst</sprite>
+    <sprite>sprites\sprBulletLazaryst</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
