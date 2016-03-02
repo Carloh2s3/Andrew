@@ -152,6 +152,7 @@ if firekey{
             break;
         case "up":
             scr_create_position_speed_direction(bullObj,x+24,y+10,bullspeed,90);
+            break;
     }
 }
 
