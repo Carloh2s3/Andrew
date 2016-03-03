@@ -35,6 +35,14 @@ global.aimup = keyboard_check_pressed(ord("W")); //right trigger
 global.aimdown = keyboard_check_pressed(ord("S")); //left trigger
 
 global.firekey = keyboard_check_pressed(ord("J")); //down face
+
+//quickselect controls
+global.quickselectup = keyboard_check_pressed(ord("I")); //up face
+global.quickselectleft = keyboard_check_pressed(ord("J")); //left face
+global.quickselectdown = keyboard_check_pressed(ord("K")); //down face
+global.quickselectright = keyboard_check_pressed(ord("L")); //right face
+
+global.startkey = keyboard_check_pressed(ord("Q")); //start button
 </string>
           </argument>
         </arguments>
@@ -67,6 +75,14 @@ global.aimup = keyboard_check_pressed(ord("W")); //right trigger
 global.aimdown = keyboard_check_pressed(ord("S")); //left trigger
 
 global.firekey = keyboard_check_pressed(ord("J")); //down face
+
+//quickselect controls
+global.quickselectup = keyboard_check_pressed(ord("I")); //up face
+global.quickselectleft = keyboard_check_pressed(ord("J")); //left face
+global.quickselectdown = keyboard_check_pressed(ord("K")); //down face
+global.quickselectright = keyboard_check_pressed(ord("L")); //right face
+
+global.startkey = keyboard_check_pressed(ord("Q")); //start button
 </string>
           </argument>
         </arguments>

@@ -82,6 +82,7 @@
     <object>objects\objCamera</object>
     <object>objects\objControls</object>
     <object>objects\objProjectile</object>
+    <object>objects\objUnlocks</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\roomPlatTest</room>
