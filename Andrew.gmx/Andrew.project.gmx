@@ -24,6 +24,16 @@
     <sprite>sprites\sprAndrewUnderRightWalk</sprite>
     <sprite>sprites\sprAndrewUnderRightJump</sprite>
     <sprite>sprites\sprAndrewUnderRightFall</sprite>
+    <sprites name="GUI">
+      <sprite>sprites\sprGuiQuickSelectFull</sprite>
+      <sprite>sprites\sprGuiQuickSelect</sprite>
+      <sprite>sprites\sprGuiQuickSelectIcons</sprite>
+    </sprites>
+    <sprites name="HUD">
+      <sprite>sprites\sprHealthBorder</sprite>
+      <sprite>sprites\sprBatteryStock</sprite>
+      <sprite>sprites\sprBatteryStockAnimation</sprite>
+    </sprites>
     <sprites name="weapon">
       <sprites name="cannon">
         <sprite>sprites\sprBulletPotato</sprite>
