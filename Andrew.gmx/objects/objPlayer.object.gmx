@@ -141,6 +141,14 @@ firekey = global.firekey;
 var bullObj = objProjectile;
 var bullspeed = 10;
 
+switch(weaponType){
+    case "potato": bullObj = objProjPotato; break;
+    case "catalyst": bullObj = objProjCatalyst; break;
+    case "alkalyst": bullObj = objProjAlkalyst; break;
+    case "paralyst": bullObj = objProjParalyst; break;
+    case "lazaryst": bullObj = objProjLazaryst; break;
+}
+//fire and create bullet
 if firekey and showQuickMenu=="idle"{
     switch(upperState){
         case "idle": 
@@ -438,11 +446,6 @@ if (showQuickMenu == "show") {
         case "lazaryst": draw_sprite(sprGuiQuickSelectIcons,4,ix,iy); break;
     }   
 }
-
-
-
-
-
 </string>
           </argument>
         </arguments>
