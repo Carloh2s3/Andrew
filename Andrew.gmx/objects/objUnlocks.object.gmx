@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///weapon unlocks
-global.UnlockCatalyst = false;
-global.UnlockAlkalyst = false;
-global.UnlockParalyst = false;
-global.UnlockLazaryst = false;
+global.unlockCatalyst = true;
+global.unlockAlkalyst = true;
+global.unlockParalyst = true;
+global.unlockLazaryst = true;
 </string>
           </argument>
         </arguments>

@@ -35,7 +35,7 @@ spriteDirection = "right"; //which set of sprites to use
 upperState = "idle"; //states: idle/level/angle/up
 
 //weapon type
-weaponType = "none" //states: potato/catalyst/alkalyst/paralyst/lazalyst
+weaponType = "potato"; //states: potato/catalyst/alkalyst/paralyst/lazalyst
 
 //state of quickselect menu
 showQuickMenu = "idle";
@@ -72,7 +72,7 @@ jumpend = global.jumpend;
 enable_movement_run_horizontal(1,4,rightkey,leftkey);
 
 //jump input
-enable_movement_jump(13,jumpstart,jumpend);
+enable_movement_jump(14,jumpstart,jumpend);
 </string>
           </argument>
         </arguments>
@@ -141,7 +141,7 @@ firekey = global.firekey;
 var bullObj = objProjectile;
 var bullspeed = 10;
 
-if firekey{
+if firekey and showQuickMenu=="idle"{
     switch(upperState){
         case "idle": 
             upperState = "level";
@@ -266,6 +266,207 @@ switch(upperState){
 
 //move
 move_movement_entity();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///quickselect
+//controls
+quickselectup = global.quickselectup; //up face
+quickselectleft = global.quickselectleft; //left face
+quickselectdown = global.quickselectdown; //down face
+quickselectright = global.quickselectright; //right face
+
+startkey = global.startkey; //start button
+
+//press start to "show" menu
+switch(showQuickMenu){
+    case "idle": //startkey
+        if startkey {
+            showQuickMenu = "show";
+        }
+        break;
+    case "show": //exit or choose weapon
+        //exit menu
+        if startkey {
+            showQuickMenu = "idle";
+        }
+        //select weapon
+        //catalyst
+        if quickselectup and global.unlockCatalyst{
+            switch(weaponType){
+                case "catalyst": weaponType = "potato"; break;
+                
+                case "potato": weaponType = "catalyst"; break;
+                case "alkalyst": weaponType = "catalyst"; break;
+                case "paralyst": weaponType = "catalyst"; break;
+                case "lazaryst": weaponType = "catalyst"; break;
+            }
+            showQuickMenu = "selectup";
+        }
+        //alkalyst
+        if quickselectright and global.unlockAlkalyst{
+            switch(weaponType){
+                case "alkalyst": weaponType = "potato"; break;
+                
+                case "potato": weaponType = "alkalyst"; break;
+                case "catalyst": weaponType = "alkalyst"; break;
+                case "paralyst": weaponType = "alkalyst"; break;
+                case "lazaryst": weaponType = "alkalyst"; break;
+            }
+            showQuickMenu = "selectright";
+        }
+        //paralyst
+        if quickselectdown and global.unlockParalyst{
+            switch(weaponType){
+                case "paralyst": weaponType = "potato"; break;
+                
+                case "potato": weaponType = "paralyst"; break;
+                case "catalyst": weaponType = "paralyst"; break;
+                case "alkalyst": weaponType = "paralyst"; break;
+                case "lazaryst": weaponType = "paralyst"; break;
+            }
+            showQuickMenu = "selectdown";
+        }
+        //lazaryst
+        if quickselectleft and global.unlockLazaryst{
+            switch(weaponType){
+                case "lazaryst": weaponType = "potato"; break;
+                
+                case "potato": weaponType = "lazaryst"; break;
+                case "catalyst": weaponType = "lazaryst"; break;
+                case "alkalyst": weaponType = "lazaryst"; break;
+                case "paralyst": weaponType = "lazaryst"; break;
+            }
+            showQuickMenu = "selectleft";
+        }
+        break;
+    case "selectup": //selection effect up
+        showQuickMenu = "idle";
+        break;
+    case "selectright": //selection effect right
+        showQuickMenu = "idle";
+        break;
+    case "selectdown": //selection effect down
+        showQuickMenu = "idle";
+        break;
+    case "selectleft": //selection effect left
+        showQuickMenu = "idle";
+        break;
+}
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///draw quickselect menu including unlocks
+if (showQuickMenu == "show") {
+    //screen is 256x224 center is 128/112
+    //frame is 96x96
+    //draw frame on 128+48/112+48
+    //icons are 22x22
+    //draw icons on 128+11+fdis/112+11+fdis
+    //offset vars
+    var fx = 128-48; //frame draw x
+    var fy = 100-48; //frame draw y
+    var ix = 128-11; //icon draw x
+    var iy = 100-11; //icon draw y
+    var fdis = 37; //frame distance x-fx,y-fy
+    
+    //frame
+    draw_sprite(sprGuiQuickSelect,0,fx,fy)
+    
+    //upper icon
+    if (weaponType == "catalyst" and global.unlockCatalyst) draw_sprite(sprGuiQuickSelectIcons,0,ix,iy-fdis);
+    else draw_sprite(sprGuiQuickSelectIcons,1,ix,iy-fdis);
+    
+    ///right icon
+    if (weaponType == "alkalyst" and global.unlockAlkalyst) draw_sprite(sprGuiQuickSelectIcons,0,ix+fdis,iy);
+    else draw_sprite(sprGuiQuickSelectIcons,2,ix+fdis,iy);
+    
+    ///bottom icon
+    if (weaponType == "paralyst" and global.unlockParalyst) draw_sprite(sprGuiQuickSelectIcons,0,ix,iy+fdis);
+    else draw_sprite(sprGuiQuickSelectIcons,3,ix,iy+fdis);
+    
+    ///left icon
+    if (weaponType == "lazaryst" and global.unlockLazaryst) draw_sprite(sprGuiQuickSelectIcons,0,ix-fdis,iy);
+    else draw_sprite(sprGuiQuickSelectIcons,4,ix-fdis,iy);
+    
+    //middle icon
+    switch (weaponType){
+        case "potato": draw_sprite(sprGuiQuickSelectIcons,0,ix,iy); break;
+        case "catalyst": draw_sprite(sprGuiQuickSelectIcons,1,ix,iy); break;
+        case "alkalyst": draw_sprite(sprGuiQuickSelectIcons,2,ix,iy); break;
+        case "paralyst": draw_sprite(sprGuiQuickSelectIcons,3,ix,iy); break;
+        case "lazaryst": draw_sprite(sprGuiQuickSelectIcons,4,ix,iy); break;
+    }   
+}
+
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///draw self
+draw_self();
 </string>
           </argument>
         </arguments>
