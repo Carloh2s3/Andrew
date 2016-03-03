@@ -47,7 +47,10 @@
       </sprites>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bgTileSetBase16x</background>
+    <background>background\bgTileSetBlurple</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="not used">
@@ -102,6 +105,7 @@
     <object>objects\objUnlocks</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\roomTileTest</room>
     <room>rooms\roomPlatTest</room>
   </rooms>
   <constants number="2">
