@@ -35,7 +35,10 @@ spriteDirection = "right"; //which set of sprites to use
 upperState = "idle"; //states: idle/level/angle/up
 
 //weapon type
-weaponType = "none" //states: none/cat/alk/par/laz
+weaponType = "none" //states: potato/catalyst/alkalyst/paralyst/lazalyst
+
+//state of quickselect menu
+showQuickMenu = "idle";
 </string>
           </argument>
         </arguments>
