@@ -46,6 +46,12 @@
         <sprite>sprites\sprBulletAlkalystCharged</sprite>
       </sprites>
     </sprites>
+    <sprites name="pickup">
+      <sprite>sprites\sprPickupCatalyst</sprite>
+      <sprite>sprites\sprPickupAlkalyst</sprite>
+      <sprite>sprites\sprPickupParalyst</sprite>
+      <sprite>sprites\sprPickupLazaryst</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileSetBase16x</background>
@@ -101,15 +107,24 @@
     <object>objects\objPlayer</object>
     <object>objects\objCamera</object>
     <object>objects\objControls</object>
+    <object>objects\objUnlocks</object>
     <object>objects\objProjectile</object>
     <object>objects\objProjPotato</object>
     <object>objects\objProjCatalyst</object>
     <object>objects\objProjAlkalyst</object>
     <object>objects\objProjParalyst</object>
     <object>objects\objProjLazaryst</object>
-    <object>objects\objUnlocks</object>
+    <objects name="pickups">
+      <object>objects\objPickUnlockCatalyst</object>
+      <object>objects\objPickUnlockAlkalyst</object>
+      <object>objects\objPickUnlockParalyst</object>
+      <object>objects\objPickUnlockLazaryst</object>
+    </objects>
+    <object>objects\objInit</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\roomInit</room>
+    <room>rooms\roomUnlockTest</room>
     <room>rooms\roomTileTest</room>
     <room>rooms\roomPlatTest</room>
   </rooms>

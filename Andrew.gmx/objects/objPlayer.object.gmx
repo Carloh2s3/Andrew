@@ -28,7 +28,7 @@
             <string>///init
 //The player's mask or MASTER object
 //this object moves and draws sprites over itself
-initialize_movement_entity(1,.5,0,0,objSolidParent);
+initialize_movement_entity(1,1,1,0,objSolidParent);
 spriteDirection = "right"; //which set of sprites to use
 
 //aim direction
@@ -72,7 +72,7 @@ jumpend = global.jumpend;
 enable_movement_run_horizontal(1,4,rightkey,leftkey);
 
 //jump input
-enable_movement_jump(14,jumpstart,jumpend);
+enable_movement_jump(12,jumpstart,jumpend);
 </string>
           </argument>
         </arguments>
@@ -239,17 +239,6 @@ switch(upperState){
         if (spriteDirection == "right") sprite_index = sprAndrewRightShootUp;
         break;
 }
-
-
-
-
-
-
-
-
-
-
-
 </string>
           </argument>
         </arguments>
@@ -271,8 +260,6 @@ switch(upperState){
           <argument>
             <kind>1</kind>
             <string>///execute movement
-
-//move
 move_movement_entity();
 </string>
           </argument>
@@ -378,10 +365,6 @@ switch(showQuickMenu){
         showQuickMenu = "idle";
         break;
 }
-
-
-
-
 </string>
           </argument>
         </arguments>
@@ -423,19 +406,19 @@ if (showQuickMenu == "show") {
     
     //upper icon
     if (weaponType == "catalyst" and global.unlockCatalyst) draw_sprite(sprGuiQuickSelectIcons,0,ix,iy-fdis);
-    else draw_sprite(sprGuiQuickSelectIcons,1,ix,iy-fdis);
+    else if (global.unlockCatalyst) draw_sprite(sprGuiQuickSelectIcons,1,ix,iy-fdis);
     
     ///right icon
     if (weaponType == "alkalyst" and global.unlockAlkalyst) draw_sprite(sprGuiQuickSelectIcons,0,ix+fdis,iy);
-    else draw_sprite(sprGuiQuickSelectIcons,2,ix+fdis,iy);
+    else  if (global.unlockAlkalyst) draw_sprite(sprGuiQuickSelectIcons,2,ix+fdis,iy);
     
     ///bottom icon
     if (weaponType == "paralyst" and global.unlockParalyst) draw_sprite(sprGuiQuickSelectIcons,0,ix,iy+fdis);
-    else draw_sprite(sprGuiQuickSelectIcons,3,ix,iy+fdis);
+    else  if (global.unlockParalyst) draw_sprite(sprGuiQuickSelectIcons,3,ix,iy+fdis);
     
     ///left icon
     if (weaponType == "lazaryst" and global.unlockLazaryst) draw_sprite(sprGuiQuickSelectIcons,0,ix-fdis,iy);
-    else draw_sprite(sprGuiQuickSelectIcons,4,ix-fdis,iy);
+    else  if (global.unlockLazaryst) draw_sprite(sprGuiQuickSelectIcons,4,ix-fdis,iy);
     
     //middle icon
     switch (weaponType){

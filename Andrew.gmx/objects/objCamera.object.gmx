@@ -19,18 +19,25 @@
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
             <string>///init
-pPosx = 0; //player position
+pPosx = 0; //player position vars
 pPosy = 0;
 xoffset = 24; //offset due to center
-maxViewOffset = 48; //camera offset when moving
-viewOffset = 0;
+maxViewOffset = 48; //maximum camera offset
+
+relx = 0; //relative x pos
+rely = 0; //relative y pos
+relSpd = 0; //relative speed
+maxRelSpd = 4; //maximum camera movement speed
+maxDist = 48; //maximum relative distance from player
+targetx = 0; //relative target x
+targety = 0; //relative target y
 </string>
           </argument>
         </arguments>
@@ -55,33 +62,37 @@ viewOffset = 0;
             <kind>1</kind>
             <string>///move with player
 //init
-var dir = "";
-//for now, just position on the player
+
+//player
 if (instance_exists(objPlayer)){
-    //get player direction
-    dir = objPlayer.spriteDirection;
     //get player pos
     pPosx = objPlayer.x;
     pPosy = objPlayer.y;
+    var xCur = objPlayer.x;
+    var xPrev = objPlayer.xprevious;
+
+    //set position
+    relSpd = xCur - xPrev;
+    
+    //adjust relative position
+    relx += relSpd;
+    //rely += ???;
+    
+    //limit relative position
+    if relx &gt; maxDist relx = maxDist;
+    if relx &lt; -maxDist relx = -maxDist;
+    
+    
+    //adjust real position
+    x = pPosx + /*sprite correction*/24 + relx;
+    y = pPosy;
+    
 }
 
-//offset
-if (dir != ""){
-    switch(dir){
-        case "left":
-            viewOffset -= point_distance(x,y,pPosx+xoffset-maxViewOffset,pPosy)/8;
-            if viewOffset &lt; -maxViewOffset viewOffset = -maxViewOffset;
-            break;
-        case "right":
-            viewOffset += point_distance(x,y,pPosx+xoffset+maxViewOffset,pPosy)/8;
-            if viewOffset &gt; maxViewOffset viewOffset = maxViewOffset;
-            break;
-    }
-}
 
-//set position to player
-x = pPosx + xoffset + viewOffset;
-y = pPosy;
+
+
+
 </string>
           </argument>
         </arguments>

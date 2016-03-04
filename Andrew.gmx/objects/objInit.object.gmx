@@ -25,11 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///weapon unlocks
-global.unlockCatalyst = false;
-global.unlockAlkalyst = false;
-global.unlockParalyst = false;
-global.unlockLazaryst = false;
+            <string>///start game things
+display_set_gui_size(256,224);
+
+room_goto_next();
 </string>
           </argument>
         </arguments>
