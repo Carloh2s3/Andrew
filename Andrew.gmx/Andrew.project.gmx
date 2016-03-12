@@ -45,6 +45,13 @@
         <sprite>sprites\sprBulletCatalystCharged</sprite>
         <sprite>sprites\sprBulletAlkalystCharged</sprite>
       </sprites>
+      <sprites name="charge cannon">
+        <sprite>sprites\sprChargePotato</sprite>
+        <sprite>sprites\sprChargeCatalyst</sprite>
+        <sprite>sprites\sprChargeAlkalyst</sprite>
+        <sprite>sprites\sprChargeParalyst</sprite>
+        <sprite>sprites\sprChargeLazaryst</sprite>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
