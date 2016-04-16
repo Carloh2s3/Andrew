@@ -39,6 +39,9 @@ weaponType = "potato"; //states: potato/catalyst/alkalyst/paralyst/lazalyst
 
 //state of quickselect menu
 showQuickMenu = "idle";
+
+//time till aiming reset
+
 </string>
           </argument>
         </arguments>
