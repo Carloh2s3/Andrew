@@ -16,6 +16,7 @@
     <sprite>sprites\sprAndrewRightShootUp</sprite>
     <sprite>sprites\sprAndrewBoundingBox</sprite>
     <sprite>sprites\sprWall</sprite>
+    <sprite>sprites\sprSlope</sprite>
     <sprite>sprites\sprAndrewUnderLeftIdle</sprite>
     <sprite>sprites\sprAndrewUnderLeftWalk</sprite>
     <sprite>sprites\sprAndrewUnderLeftJump</sprite>
@@ -111,6 +112,7 @@
   <objects name="objects">
     <object>objects\objSolidParent</object>
     <object>objects\objWall</object>
+    <object>objects\objSlope</object>
     <object>objects\objPlayer</object>
     <object>objects\objCamera</object>
     <object>objects\objControls</object>
