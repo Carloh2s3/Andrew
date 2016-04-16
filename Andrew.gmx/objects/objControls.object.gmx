@@ -34,7 +34,9 @@ global.jumpend = keyboard_check_released(vk_space); //left face
 global.aimup = keyboard_check_pressed(ord("W")); //right trigger
 global.aimdown = keyboard_check_pressed(ord("S")); //left trigger
 
+//weapon controls
 global.firekey = keyboard_check_pressed(ord("J")); //down face
+
 
 //quickselect controls
 global.quickselectup = keyboard_check_pressed(ord("I")); //up face
