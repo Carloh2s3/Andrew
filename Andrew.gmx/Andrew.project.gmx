@@ -8,11 +8,14 @@
   <sprites name="sprites">
     <sprite>sprites\sprAndrewLeft</sprite>
     <sprite>sprites\sprAndrewLeftShoot</sprite>
+    <sprite>sprites\sprAndrewLeftSword</sprite>
     <sprite>sprites\sprAndrewLeftShootDiag</sprite>
+    <sprite>sprites\sprAndrewLeftShootDiagDown</sprite>
     <sprite>sprites\sprAndrewLeftShootUp</sprite>
     <sprite>sprites\sprAndrewRight</sprite>
     <sprite>sprites\sprAndrewRightShoot</sprite>
     <sprite>sprites\sprAndrewRightShootDiag</sprite>
+    <sprite>sprites\sprAndrewRightShootDiagDown</sprite>
     <sprite>sprites\sprAndrewRightShootUp</sprite>
     <sprite>sprites\sprAndrewBoundingBox</sprite>
     <sprite>sprites\sprWall</sprite>
@@ -62,6 +65,11 @@
       <sprite>sprites\sprPickupParalyst</sprite>
       <sprite>sprites\sprPickupLazaryst</sprite>
     </sprites>
+    <sprite>sprites\sprSwordBeam</sprite>
+    <sprite>sprites\sprSwordCatalyst</sprite>
+    <sprite>sprites\sprSwordAlkalyst</sprite>
+    <sprite>sprites\sprSwordParalyst</sprite>
+    <sprite>sprites\sprSwordLazaryst</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileSetBase16x</background>
