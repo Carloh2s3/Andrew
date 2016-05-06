@@ -22,5 +22,6 @@
   <frames>
     <frame index="0">images\sprHealthBorder_0.png</frame>
     <frame index="1">images\sprHealthBorder_1.png</frame>
+    <frame index="2">images\sprHealthBorder_2.png</frame>
   </frames>
 </sprite>
