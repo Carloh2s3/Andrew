@@ -25,38 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///weapon unlocks
-global.unlockCatalyst = false;
-global.unlockAlkalyst = false;
-global.unlockParalyst = false;
-global.unlockLazaryst = false;
-/*
-charge
-impact jets
-high jump
-energizer
-beam sword
-
-derma armor
-hazard shield
-
-interface: machine
-interface: alien
-interface: necromancer
-
-health up x20
-capacitor up x3
-battery up x12
-
-catalyst enhancer
-alkalyst enhancer
-paralyst enhancer
-lazaryst enhancer
-
-auto-energizer
-
-
-*/
+            <string>///init persistent player stats
+global.maxhealth = 500;
+global.currenthealth = 390;//global.maxhealth;
+global.maxbattery = 12;
+global.currentbattery = 12;//global.maxbattery;
+global.maxcapacitor = 0;
+global.currentcapacitor = global.maxcapacitor;
 </string>
           </argument>
         </arguments>

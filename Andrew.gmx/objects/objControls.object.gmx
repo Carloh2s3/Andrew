@@ -36,7 +36,8 @@ global.aimdown = keyboard_check_pressed(ord("S")); //left trigger
 
 //weapon controls
 global.firekey = keyboard_check_pressed(ord("J")); //down face
-
+global.chargekey = keyboard_check(ord("J")); //down face
+global.firekeyrelease = keyboard_check_released(ord("J")); //down face
 
 //quickselect controls
 global.quickselectup = keyboard_check_pressed(ord("I")); //up face
@@ -77,6 +78,8 @@ global.aimup = keyboard_check_pressed(ord("W")); //right trigger
 global.aimdown = keyboard_check_pressed(ord("S")); //left trigger
 
 global.firekey = keyboard_check_pressed(ord("J")); //down face
+global.chargekey = keyboard_check(ord("J")); //down face
+global.firekeyrelease = keyboard_check_released(ord("J")); //down face
 
 //quickselect controls
 global.quickselectup = keyboard_check_pressed(ord("I")); //up face

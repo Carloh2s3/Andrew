@@ -35,13 +35,25 @@ spriteDirection = "right"; //which set of sprites to use
 upperState = "idle"; //states: idle/level/angle/up
 
 //weapon type
-weaponType = "potato"; //states: potato/catalyst/alkalyst/paralyst/lazalyst
+weaponType = "potato"; //states: potato/catalyst/alkalyst/paralyst/lazaryst
+
+//charge vars
+charging = false;
+//  chargeState = "none"; //medium, full
+chargevalue = 0;
+mediumCharge = 15;
+fullCharge = 60;
 
 //state of quickselect menu
 showQuickMenu = "idle";
 
 //time till aiming reset
 
+
+//draw vars
+drawIndexCharge = 0;
+drawSpeedCharge = 0.5;
+drawValueMedCharge = (mediumCharge + fullCharge) / 2;
 </string>
           </argument>
         </arguments>
@@ -102,6 +114,7 @@ aimup = global.aimup;
 aimdown = global.aimdown;
 
 //aiming
+//aim up
 if aimup {
     switch(upperState){
         case "idle": 
@@ -109,7 +122,7 @@ if aimup {
         case "angle": upperState = "up"; break;
     }
 }
-
+//aim down
 if aimdown {
     switch(upperState){
         case "up": upperState = "angle"; break;
@@ -136,41 +149,44 @@ if aimdown {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///firing
+            <string>///firing + charge
 //controls
 firekey = global.firekey;
+chargekey = global.chargekey;
+firekeyrelease = global.firekeyrelease;
 
-//check weapon type
-var bullObj = objProjectile;
-var bullspeed = 10;
-
-switch(weaponType){
-    case "potato": bullObj = objProjPotato; break;
-    case "catalyst": bullObj = objProjCatalyst; break;
-    case "alkalyst": bullObj = objProjAlkalyst; break;
-    case "paralyst": bullObj = objProjParalyst; break;
-    case "lazaryst": bullObj = objProjLazaryst; break;
-}
 //fire and create bullet
-if firekey and showQuickMenu=="idle"{
-    switch(upperState){
-        case "idle": 
-            upperState = "level";
-        case "level":
-            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+14,bullspeed,180);
-            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+14,bullspeed,0);
-            break;
-        case "angle":
-            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+11,y+6,bullspeed,135);
-            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+6,bullspeed,45);
-            break;
-        case "up":
-            if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+16,y+6,bullspeed,90);
-            if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+27,y+6,bullspeed,90);
-            break;
+if (firekey &amp;&amp; showQuickMenu=="idle"){
+    scrPlayerFireBullet(weaponType,upperState);
+    if upperState == "idle" upperState = "level";
+}
+
+//charge
+if (chargekey &amp;&amp; chargevalue &lt; fullCharge+1){
+    chargevalue++;
+}
+
+if (firekeyrelease &amp;&amp; showQuickMenu=="idle"){
+    if (chargevalue &lt; mediumCharge){
+            //fire nothing
+            chargevalue = 0;
+            drawIndexCharge = 0;
+    }
+    if (chargevalue &gt;= mediumCharge &amp;&amp; chargevalue &lt; fullCharge){
+            //fire mediumcharge bullet
+            scrPlayerFireMediumcharge(weaponType,upperState);
+            if upperState == "idle" upperState = "level";
+            chargevalue = 0;
+            drawIndexCharge = 0;
+    }
+    if (chargevalue &gt;= fullCharge){
+            //fire fullcharge bullet
+            scrPlayerFireFullcharge(weaponType,upperState);
+            if upperState == "idle" upperState = "level";
+            chargevalue = 0;
+            drawIndexCharge = 0;
     }
 }
-
 </string>
           </argument>
         </arguments>
@@ -195,14 +211,14 @@ if firekey and showQuickMenu=="idle"{
 //reset image_speed
 image_speed = 0;
 
-//choose spriteset
+//#choose spriteset
 if (hspd &gt; 0){
     spriteDirection = "right";
 } else if (hspd &lt; 0){
     spriteDirection = "left";
 }
 
-//choose image index
+//#choose image index
 //check air
 if (!place_meeting(x, y+1, collision_object)) {
     if (vspd &gt; 0) { // if falling
@@ -215,7 +231,7 @@ if (!place_meeting(x, y+1, collision_object)) {
     //check moving
     if (hspd !=0) {
         image_speed = 0.5;
-        if 1 &gt; image_index or image_index &gt; 7 {
+        if 1 &gt; image_index or image_index &gt; 6 {
             image_index = 1;
         }
     } else {
@@ -224,7 +240,7 @@ if (!place_meeting(x, y+1, collision_object)) {
     }
 }
 
-//choose sprite
+//#choose sprite
 switch(upperState){
     case "idle": 
         if (spriteDirection == "left") sprite_index = sprAndrewLeft;
@@ -457,6 +473,95 @@ if (showQuickMenu == "show") {
             <kind>1</kind>
             <string>///draw self
 draw_self();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///draw charging thing
+var drawCharge = 0;
+if (chargevalue &gt; mediumCharge){
+    if (chargevalue &lt;= drawValueMedCharge){
+        switch(weaponType){
+            case "potato": drawCharge = sprChargePotatoLow; break;
+            case "catalyst": drawCharge = sprChargeCatalystLow; break;
+            case "alkalyst": drawCharge = sprChargeAlkalystLow; break;
+            case "paralyst": drawCharge = sprChargeParalystLow; break;
+            case "lazaryst": drawCharge = sprChargeLazarystLow; break;
+        }
+    }
+    if (chargevalue &gt; drawValueMedCharge &amp;&amp; chargevalue &lt;= fullCharge){
+        switch(weaponType){
+            case "potato": drawCharge = sprChargePotatoMed; break;
+            case "catalyst": drawCharge = sprChargeCatalystMed; break;
+            case "alkalyst": drawCharge = sprChargeAlkalystMed; break;
+            case "paralyst": drawCharge = sprChargeParalystMed; break;
+            case "lazaryst": drawCharge = sprChargeLazarystMed; break;
+        }
+    }
+    if (chargevalue &gt; fullCharge){
+        switch(weaponType){
+            case "potato": drawCharge = sprChargePotatoFull; break;
+            case "catalyst": drawCharge = sprChargeCatalystFull; break;
+            case "alkalyst": drawCharge = sprChargeAlkalystFull; break;
+            case "paralyst": drawCharge = sprChargeParalystFull; break;
+            case "lazaryst": drawCharge = sprChargeLazarystFull; break;
+        }
+    }
+    switch(upperState){
+        case "level":
+            if spriteDirection == "left" draw_sprite(drawCharge,drawIndexCharge,x+1,y+14);
+            if spriteDirection == "right" draw_sprite(drawCharge,drawIndexCharge,x+43,y+14);
+            break;
+        case "angle":
+            if spriteDirection == "left" draw_sprite(drawCharge,drawIndexCharge,x+5,y+1);
+            if spriteDirection == "right" draw_sprite(drawCharge,drawIndexCharge,x+38,y+1);
+            break;
+        case "up":
+            if spriteDirection == "left" draw_sprite(drawCharge,drawIndexCharge,x+16,y-4);
+            if spriteDirection == "right" draw_sprite(drawCharge,drawIndexCharge,x+27,y-4);
+            break;
+    }
+    
+    drawIndexCharge += drawSpeedCharge;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///dev draw info
+draw_text(x+32,y-32,chargevalue);
 </string>
           </argument>
         </arguments>
