@@ -18,6 +18,10 @@ switch(weaponType){
 switch(upperState){
     case "idle": 
         upperState = "level";
+    case "down":
+        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+26,bullspeed,225);
+        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+26,bullspeed,315);
+        break;
     case "level":
         if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+14,bullspeed,180);
         if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+14,bullspeed,0);

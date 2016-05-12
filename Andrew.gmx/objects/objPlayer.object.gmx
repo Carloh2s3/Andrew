@@ -31,8 +31,11 @@
 initialize_movement_entity(1,1,1,0,objSolidParent);
 spriteDirection = "right"; //which set of sprites to use
 
+//global restrictive state machine
+restrictState = "idle"; //states: idle/immobile
+
 //aim direction
-upperState = "idle"; //states: idle/level/angle/up
+upperState = "idle"; //states: idle/down/level/angle/up
 
 //weapon type
 weaponType = "potato"; //states: potato/catalyst/alkalyst/paralyst/lazaryst
@@ -43,6 +46,15 @@ charging = false;
 chargevalue = 0;
 mediumCharge = 15;
 fullCharge = 60;
+
+//sword vars
+swordcreate = true;
+swordCooldown = 6;
+swordtimer = 0;
+swordImmobileTime = 10;
+swordimmobiletimer = 0;
+swordcomboindex = 0;
+drawswordindex = 0;
 
 //state of quickselect menu
 showQuickMenu = "idle";
@@ -83,11 +95,26 @@ rightkey = global.rightkey;
 jumpstart = global.jumpstart;
 jumpend = global.jumpend;
 
+//restrictive state set
+if (swordimmobiletimer &gt; 0){
+    restrictState = "immobile";
+} else {
+    restrictState = "idle";
+}
+//override controls [immobile]
+if (restrictState = "immobile"){
+    leftkey = false;
+    rightkey = false;
+    jumpstart = false;
+    jumpend = false;
+}
+
 //horizontal input
 enable_movement_run_horizontal(1,4,rightkey,leftkey);
 
 //jump input
 enable_movement_jump(12,jumpstart,jumpend);
+
 </string>
           </argument>
         </arguments>
@@ -119,12 +146,15 @@ if aimup {
     switch(upperState){
         case "idle": 
         case "level": upperState = "angle"; break;
+        case "down": upperState = "level" break;
         case "angle": upperState = "up"; break;
     }
 }
 //aim down
 if aimdown {
     switch(upperState){
+        case "idle":
+        case "level": upperState = "down"; break;
         case "up": upperState = "angle"; break;
         case "angle": upperState = "level"; break;
     }
@@ -149,44 +179,79 @@ if aimdown {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///firing + charge
+            <string>///weapons control
 //controls
 firekey = global.firekey;
 chargekey = global.chargekey;
 firekeyrelease = global.firekeyrelease;
+swordkey = global.swordkey;
 
-//fire and create bullet
-if (firekey &amp;&amp; showQuickMenu=="idle"){
-    scrPlayerFireBullet(weaponType,upperState);
-    if upperState == "idle" upperState = "level";
-}
-
-//charge
-if (chargekey &amp;&amp; chargevalue &lt; fullCharge+1){
-    chargevalue++;
-}
-
-if (firekeyrelease &amp;&amp; showQuickMenu=="idle"){
-    if (chargevalue &lt; mediumCharge){
+//if not using sword, enable gunfire
+if (swordtimer &lt;= 0){
+    //fire and create bullet
+    if (firekey &amp;&amp; showQuickMenu=="idle"){
+        scrPlayerFireBullet(weaponType,upperState);
+        if upperState == "idle" upperState = "level";
+    }
+    
+    //charge
+    if (chargekey &amp;&amp; chargevalue &lt; fullCharge+1){
+        chargevalue++;
+    }
+    //charge shot
+    if (firekeyrelease &amp;&amp; showQuickMenu=="idle"){
+        if (chargevalue &lt; mediumCharge){
             //fire nothing
             chargevalue = 0;
             drawIndexCharge = 0;
-    }
-    if (chargevalue &gt;= mediumCharge &amp;&amp; chargevalue &lt; fullCharge){
+        } 
+        else if (global.unlockMedCharge &amp;&amp; chargevalue &gt;= mediumCharge &amp;&amp; chargevalue &lt; fullCharge){
             //fire mediumcharge bullet
             scrPlayerFireMediumcharge(weaponType,upperState);
             if upperState == "idle" upperState = "level";
             chargevalue = 0;
             drawIndexCharge = 0;
-    }
-    if (chargevalue &gt;= fullCharge){
+        } 
+        else if (global.unlockFullCharge &amp;&amp; chargevalue &gt;= fullCharge){
             //fire fullcharge bullet
             scrPlayerFireFullcharge(weaponType,upperState);
             if upperState == "idle" upperState = "level";
             chargevalue = 0;
             drawIndexCharge = 0;
+        }  else chargevalue = 0;
+    }
+    //free energized ability (chargebeam+sword)
+    if (swordkey &amp;&amp; showQuickMenu=="idle"){
+        
     }
 }
+
+//charge value limits
+var medChUn = global.unlockMedCharge;
+var fulChUn = global.unlockFullCharge;
+if (!medChUn) chargevalue = 0;
+if (medChUn &amp;&amp; !fulChUn) chargevalue = median(0,chargevalue,mediumCharge);
+if (medChUn &amp;&amp; fulChUn) chargevalue = median(0,chargevalue,fullCharge);
+
+//sword
+if (global.unlockBeamSword &amp;&amp; swordkey &amp;&amp; showQuickMenu=="idle"){
+    if (swordtimer &lt;= 0){
+        //create sword object
+        if (swordcreate){
+            scrPlayerFireSword(weaponType,spriteDirection);
+            swordcreate = false;
+        }
+        //timers
+        swordtimer = swordCooldown;
+        swordimmobiletimer = swordImmobileTime;
+        //draw
+        drawswordindex = 0;
+    }
+}
+//decrement sword timers
+if swordtimer &gt; 0 swordtimer--;
+if (swordtimer &lt;= 0) swordcreate = true;
+if swordimmobiletimer &gt; 0 swordimmobiletimer--;
 </string>
           </argument>
         </arguments>
@@ -246,6 +311,10 @@ switch(upperState){
         if (spriteDirection == "left") sprite_index = sprAndrewLeft;
         if (spriteDirection == "right") sprite_index = sprAndrewRight;
         break;
+    case "down":
+        if (spriteDirection == "left") sprite_index = sprAndrewLeftShootDiagDown;
+        if (spriteDirection == "right") sprite_index = sprAndrewRightShootDiagDown;
+        break;
     case "level": 
         if (spriteDirection == "left") sprite_index = sprAndrewLeftShoot;
         if (spriteDirection == "right") sprite_index = sprAndrewRightShoot;
@@ -259,6 +328,10 @@ switch(upperState){
         if (spriteDirection == "right") sprite_index = sprAndrewRightShootUp;
         break;
 }
+
+//  hard overrides
+//sword anim
+
 </string>
           </argument>
         </arguments>
@@ -495,7 +568,8 @@ draw_self();
             <kind>1</kind>
             <string>///draw charging thing
 var drawCharge = 0;
-if (chargevalue &gt; mediumCharge){
+if (global.unlockMedCharge &amp;&amp; chargevalue &gt; mediumCharge){
+    //draw med charge
     if (chargevalue &lt;= drawValueMedCharge){
         switch(weaponType){
             case "potato": drawCharge = sprChargePotatoLow; break;
@@ -505,25 +579,33 @@ if (chargevalue &gt; mediumCharge){
             case "lazaryst": drawCharge = sprChargeLazarystLow; break;
         }
     }
-    if (chargevalue &gt; drawValueMedCharge &amp;&amp; chargevalue &lt;= fullCharge){
-        switch(weaponType){
-            case "potato": drawCharge = sprChargePotatoMed; break;
-            case "catalyst": drawCharge = sprChargeCatalystMed; break;
-            case "alkalyst": drawCharge = sprChargeAlkalystMed; break;
-            case "paralyst": drawCharge = sprChargeParalystMed; break;
-            case "lazaryst": drawCharge = sprChargeLazarystMed; break;
+    if (global.unlockFullCharge){
+        //draw transition into full charge
+        if (chargevalue &gt; drawValueMedCharge &amp;&amp; chargevalue &lt;= fullCharge){
+            switch(weaponType){
+                case "potato": drawCharge = sprChargePotatoMed; break;
+                case "catalyst": drawCharge = sprChargeCatalystMed; break;
+                case "alkalyst": drawCharge = sprChargeAlkalystMed; break;
+                case "paralyst": drawCharge = sprChargeParalystMed; break;
+                case "lazaryst": drawCharge = sprChargeLazarystMed; break;
+            }
         }
-    }
-    if (chargevalue &gt; fullCharge){
-        switch(weaponType){
-            case "potato": drawCharge = sprChargePotatoFull; break;
-            case "catalyst": drawCharge = sprChargeCatalystFull; break;
-            case "alkalyst": drawCharge = sprChargeAlkalystFull; break;
-            case "paralyst": drawCharge = sprChargeParalystFull; break;
-            case "lazaryst": drawCharge = sprChargeLazarystFull; break;
+        //draw full charge
+        if (chargevalue &gt;= fullCharge){
+            switch(weaponType){
+                case "potato": drawCharge = sprChargePotatoFull; break;
+                case "catalyst": drawCharge = sprChargeCatalystFull; break;
+                case "alkalyst": drawCharge = sprChargeAlkalystFull; break;
+                case "paralyst": drawCharge = sprChargeParalystFull; break;
+                case "lazaryst": drawCharge = sprChargeLazarystFull; break;
+            }
         }
     }
     switch(upperState){
+        case "down":
+            if spriteDirection == "left" draw_sprite(drawCharge,drawIndexCharge,x+7,y+31);
+            if spriteDirection == "right" draw_sprite(drawCharge,drawIndexCharge,x+37,y+31);
+            break;
         case "level":
             if spriteDirection == "left" draw_sprite(drawCharge,drawIndexCharge,x+1,y+14);
             if spriteDirection == "right" draw_sprite(drawCharge,drawIndexCharge,x+43,y+14);

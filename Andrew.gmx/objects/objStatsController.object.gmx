@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///init persistent player stats
-global.maxhealth = 500;
-global.currenthealth = 390;//global.maxhealth;
-global.maxbattery = 12;
-global.currentbattery = 12;//global.maxbattery;
+global.maxhealth = 100;
+global.currenthealth = 100;//global.maxhealth;
+global.maxbattery = 0;
+global.currentbattery = 0;//global.maxbattery;
 global.maxcapacitor = 0;
 global.currentcapacitor = global.maxcapacitor;
 </string>
