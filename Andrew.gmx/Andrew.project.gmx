@@ -19,7 +19,9 @@
     <sprite>sprites\sprAndrewRightShootUp</sprite>
     <sprite>sprites\sprAndrewBoundingBox</sprite>
     <sprite>sprites\sprWall</sprite>
+    <sprite>sprites\sprWallColored</sprite>
     <sprite>sprites\sprSlope</sprite>
+    <sprite>sprites\sprSlopeColored</sprite>
     <sprite>sprites\sprAndrewUnderLeftIdle</sprite>
     <sprite>sprites\sprAndrewUnderLeftWalk</sprite>
     <sprite>sprites\sprAndrewUnderLeftJump</sprite>
@@ -72,6 +74,13 @@
         <sprite>sprites\sprChargeLazarystMed</sprite>
         <sprite>sprites\sprChargeLazarystFull</sprite>
       </sprites>
+      <sprites name="sword">
+        <sprite>sprites\sprSwordBeam</sprite>
+        <sprite>sprites\sprSwordCatalyst</sprite>
+        <sprite>sprites\sprSwordAlkalyst</sprite>
+        <sprite>sprites\sprSwordParalyst</sprite>
+        <sprite>sprites\sprSwordLazaryst</sprite>
+      </sprites>
     </sprites>
     <sprites name="pickup">
       <sprite>sprites\sprPickupCatalyst</sprite>
@@ -79,11 +88,6 @@
       <sprite>sprites\sprPickupParalyst</sprite>
       <sprite>sprites\sprPickupLazaryst</sprite>
     </sprites>
-    <sprite>sprites\sprSwordBeam</sprite>
-    <sprite>sprites\sprSwordCatalyst</sprite>
-    <sprite>sprites\sprSwordAlkalyst</sprite>
-    <sprite>sprites\sprSwordParalyst</sprite>
-    <sprite>sprites\sprSwordLazaryst</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileSetBase16x</background>
@@ -139,7 +143,9 @@
   <objects name="objects">
     <object>objects\objSolidParent</object>
     <object>objects\objWall</object>
+    <object>objects\objWallColored</object>
     <object>objects\objSlope</object>
+    <object>objects\objSlopeColored</object>
     <object>objects\objPlayer</object>
     <object>objects\objCamera</object>
     <object>objects\objControls</object>
@@ -172,6 +178,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\roomInit</room>
+    <room>rooms\roomLevelTest</room>
     <room>rooms\roomUnlockTest</room>
     <room>rooms\roomTileTest</room>
     <room>rooms\roomPlatTest</room>
