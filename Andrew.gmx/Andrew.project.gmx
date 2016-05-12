@@ -88,6 +88,17 @@
       <sprite>sprites\sprPickupParalyst</sprite>
       <sprite>sprites\sprPickupLazaryst</sprite>
     </sprites>
+    <sprite>sprites\sprSwordBeam</sprite>
+    <sprite>sprites\sprSwordBeamAttack1</sprite>
+    <sprite>sprites\sprSwordBeamAttack2</sprite>
+    <sprite>sprites\sprSwordBeamAttack3</sprite>
+    <sprite>sprites\sprSwordCatalyst</sprite>
+    <sprite>sprites\sprSwordCatalystAttack1</sprite>
+    <sprite>sprites\sprSwordCatalystAttack2</sprite>
+    <sprite>sprites\sprSwordAlkalyst</sprite>
+    <sprite>sprites\sprSwordAlkalystAttack1</sprite>
+    <sprite>sprites\sprSwordParalyst</sprite>
+    <sprite>sprites\sprSwordLazaryst</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileSetBase16x</background>
