@@ -97,8 +97,13 @@
     <sprite>sprites\sprSwordCatalystAttack2</sprite>
     <sprite>sprites\sprSwordAlkalystOld</sprite>
     <sprite>sprites\sprSwordAlkalystAttack1</sprite>
+    <sprite>sprites\sprSwordAlkalystAttack2</sprite>
+    <sprite>sprites\sprSwordAlkalystAttack3</sprite>
     <sprite>sprites\sprSwordParalystOld</sprite>
+    <sprite>sprites\sprSwordParalystAttack1</sprite>
     <sprite>sprites\sprSwordLazarystOld</sprite>
+    <sprite>sprites\sprSwordLazarystAttack1</sprite>
+    <sprite>sprites\sprSwordLazarystAttack2</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileSetBase16x</background>
