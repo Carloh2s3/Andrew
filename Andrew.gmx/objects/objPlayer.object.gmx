@@ -190,7 +190,7 @@ swordkey = global.swordkey;
 if (swordtimer &lt;= 0){
     //fire and create bullet
     if (firekey &amp;&amp; showQuickMenu=="idle"){
-        scrPlayerFireBullet(weaponType,upperState);
+        scrPlayerFireBullet(weaponType,upperState,spriteDirection);
         if upperState == "idle" upperState = "level";
     }
     
@@ -207,14 +207,14 @@ if (swordtimer &lt;= 0){
         } 
         else if (global.unlockMedCharge &amp;&amp; chargevalue &gt;= mediumCharge &amp;&amp; chargevalue &lt; fullCharge){
             //fire mediumcharge bullet
-            scrPlayerFireMediumcharge(weaponType,upperState);
+            scrPlayerFireMediumcharge(weaponType,upperState,spriteDirection);
             if upperState == "idle" upperState = "level";
             chargevalue = 0;
             drawIndexCharge = 0;
         } 
         else if (global.unlockFullCharge &amp;&amp; chargevalue &gt;= fullCharge){
             //fire fullcharge bullet
-            scrPlayerFireFullcharge(weaponType,upperState);
+            scrPlayerFireFullcharge(weaponType,upperState,spriteDirection);
             if upperState == "idle" upperState = "level";
             chargevalue = 0;
             drawIndexCharge = 0;

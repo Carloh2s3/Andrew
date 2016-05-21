@@ -84,6 +84,7 @@
     <sprite>sprites\sprSwordAlkalyst</sprite>
     <sprite>sprites\sprSwordParalyst</sprite>
     <sprite>sprites\sprSwordLazaryst</sprite>
+    <sprite>sprites\spr_dryseason_hugger</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgTileSetBase16x</background>
@@ -151,6 +152,7 @@
       <objects name="small">
         <object>objects\objProjPotato</object>
         <object>objects\objProjCatalyst</object>
+        <object>objects\objProjCatalystHug</object>
         <object>objects\objProjAlkalyst</object>
         <object>objects\objProjParalyst</object>
         <object>objects\objProjLazaryst</object>

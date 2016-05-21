@@ -1,6 +1,7 @@
-///scrPlayerFireBullet(weaponType,upperState);
+///scrPlayerFireBullet(weaponType,upperState,spriteDirection);
 var weaponType = argument0;
 var upperState = argument1;
+var spriteDirection = argument2;
 
 //check weapon type
 var bullObj = objProjectile;
@@ -19,19 +20,19 @@ switch(upperState){
     case "idle": 
         upperState = "level";
     case "down":
-        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+26,bullspeed,225);
-        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+26,bullspeed,315);
+        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+26,bullspeed,225,spriteDirection);
+        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+26,bullspeed,315,spriteDirection);
         break;
     case "level":
-        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+14,bullspeed,180);
-        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+14,bullspeed,0);
+        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+12,y+14,bullspeed,180,spriteDirection);
+        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+14,bullspeed,0,spriteDirection);
         break;
     case "angle":
-        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+11,y+6,bullspeed,135);
-        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+6,bullspeed,45);
+        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+11,y+6,bullspeed,135,spriteDirection);
+        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+32,y+6,bullspeed,45,spriteDirection);
         break;
     case "up":
-        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+16,y+6,bullspeed,90);
-        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+27,y+6,bullspeed,90);
+        if spriteDirection == "left" scr_create_position_speed_direction(bullObj,x+16,y+6,bullspeed,90,spriteDirection);
+        if spriteDirection == "right" scr_create_position_speed_direction(bullObj,x+27,y+6,bullspeed,90,spriteDirection);
         break;
 }

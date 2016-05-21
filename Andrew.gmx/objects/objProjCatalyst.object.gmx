@@ -27,6 +27,247 @@
             <kind>1</kind>
             <string>//init projectile
 damage = 0;
+
+//init catalyst behaviour
+state = "air"; //air , hug
+movedir = "right";
+hugdir = 0;
+
+
+hspd = 0; //horizontal potential movement
+vspd = 0; //vertical potential movement
+spd = 0; //set value for set speed set_movement_direction_speed
+dir = 0; //angular direction for for set_movement_direction
+collision_object = argument[4] // The object that will be used for collisions.
+grav = 0.2; //Gravity amount (positive is down).
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///hug the wall with constant speed
+
+//check movedir
+if (state == "air"){
+    //check collision around self
+    var chUp = place_meeting(x, y-vspd, collision_object);
+    var chDown = place_meeting(x, y+vspd, collision_object);
+    var chLft = place_meeting(x-hspd, y, collision_object);
+    var chRgt = place_meeting(x+hspd, y, collision_object);
+    wallChk = chUp || chDown || chLft || chRgt
+    if (wallChk){
+        if (chUp){
+            //move to contact
+            while !place_meeting(x, y-1, collision_object) y-=1;
+            //check collision object per movement direction
+            switch(image_angle){
+                case 45: //north-east
+                    if place_meeting(x,y-1,objWall){
+                        //go to right
+                    } else 
+                    if place_meeting(x,y-1,objSlope){
+                        var collObj = instance_place(x,y-1,objSlope);
+                        if (collObj.image_angle == 180){
+                            //split in two, up-left/down-right
+                        } else {
+                            //go to right
+                        }
+                    }
+                case 90: //north
+                    if place_meeting(x,y-1,objWall){
+                        //split in two
+                    } else
+                    if place_meeting(x,y-1,objSlope){
+                        var collObj = instance_place(x,y-1,objSlope);
+                        if (collObj.image_angle == 180){
+                            //go up-left
+                        } else
+                        if (collObj.image_angle == 270){
+                            //go up-right
+                        } else {
+                            //split in two
+                        }
+                    }
+                case 135: //north-west
+                    if place_meeting(x,y-1,objWall){
+                        //go to left
+                    } else
+                    if place_meeting(x,y-1,objSlope){
+                        var collObj = instance_place(x,y-1,objSlope);
+                        if (collObj.image_angle == 270){
+                            //split in two, up-right/down-left
+                        } else {
+                            //go to left
+                        }
+                    }
+            }
+        }
+        if (chDown){
+            //move to contact
+            while !place_meeting(x, y+1, collision_object) y+=1;
+            //check collision object per movement direction
+            switch(image_angle){
+                case 225: //south-west
+                    if place_meeting(x,y+1,objWall){
+                        //go to left
+                    } else 
+                    if place_meeting(x,y+1,objSlope){
+                        var collObj = instance_place(x,y+1,objSlope);
+                        if (collObj.image_angle == 0){
+                            //split in two, up-left/down-right
+                        } else {
+                            //go to left
+                        }
+                    }
+                    break;
+                case 270: //south
+                    if place_meeting(x,y+1,objWall){
+                        //split in two
+                    } else
+                    if place_meeting(x,y+1,objSlope){
+                        var collObj = instance_place(x,y+1,objSlope);
+                        if (collObj.image_angle == 0){
+                            //go down-right
+                        } else
+                        if (collObj.image_angle == 90){
+                            //go down-left
+                        } else {
+                            //split in two
+                        }
+                    }
+                    break;
+                case 315: //south-east
+                    if place_meeting(x,y+1,objWall){
+                        //go to right
+                    } else
+                    if place_meeting(x,y+1,objSlope){
+                        var collObj = instance_place(x,y+1,objSlope);
+                        if (collObj.image_angle == 90){
+                            //split in two, up-left/down-right
+                        } else {
+                            //go to right
+                        }
+                    }
+                    break;
+            }
+        }
+        if (chLft){
+            //move to contact
+            while !place_meeting(x-1, y, collision_object) x-=1;
+            //check collision object per movement direction
+            switch(image_angle){
+                case 135: //north-west
+                    if place_meeting(x-1,y,objWall){
+                        //go to up
+                    } else 
+                    if place_meeting(x-1,y,objSlope){
+                        var collObj = instance_place(x-1,y,objSlope);
+                        if (collObj.image_angle == 270){
+                            //split in two, up-right/down-left
+                        } else {
+                            //go to up
+                        }
+                    }
+                    break;
+                case 180: //west
+                    if place_meeting(x-1,y,objWall){
+                        //split in two
+                    } else
+                    if place_meeting(x-1,y,objSlope){
+                        var collObj = instance_place(x-1,y,objSlope);
+                        if (collObj.image_angle == 0){
+                            //go up-left
+                        } else
+                        if (collObj.image_angle == 270){
+                            //go down-left
+                        } else {
+                            //split in two
+                        }
+                    }
+                    break;
+                case 225: //south-west
+                    if place_meeting(x-1,y,objWall){
+                        //go to down
+                    } else
+                    if place_meeting(x-1,y,objSlope){
+                        var collObj = instance_place(x-1,y,objSlope);
+                        if (collObj.image_angle == 0){
+                            //split in two, up-left/down-right
+                        } else {
+                            //go to down
+                        }
+                    }
+                    break;
+            }
+        }
+        if (chRgt){
+            //move to contact
+            while !place_meeting(x+1, y, collision_object) x+=1;
+            //check collision object per movement direction
+            switch(image_angle){
+                case 315: //south-east
+                    if place_meeting(x+1,y,objWall){
+                        //go to down
+                    } else 
+                    if place_meeting(x+1,y,objSlope){
+                        var collObj = instance_place(x+1,y,objSlope);
+                        if (collObj.image_angle == 90){
+                            //split in two, up-right/down-left
+                        } else {
+                            //go to down
+                        }
+                    }
+                    break;
+                case 0: //east
+                    if place_meeting(x+1,y,objWall){
+                        //split in two
+                    } else
+                    if place_meeting(x+1,y,objSlope){
+                        var collObj = instance_place(x+1,y,objSlope);
+                        if (collObj.image_angle == 90){
+                            //go up
+                        } else
+                        if (collObj.image_angle == 180){
+                            //go down
+                        } else {
+                            //split in two
+                        }
+                    }
+                    break;
+                case 45: //north-east
+                    if place_meeting(x+1,y,objWall){
+                        //go to up
+                    } else
+                    if place_meeting(x+1,y,objSlope){
+                        var collObj = instance_place(x+1,y,objSlope);
+                        if (collObj.image_angle == 180){
+                            //split in two, up-left/down-right
+                        } else {
+                            //go up
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
