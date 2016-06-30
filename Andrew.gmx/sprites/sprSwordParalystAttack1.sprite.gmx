@@ -9,7 +9,7 @@
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
   <bbox_right>79</bbox_right>
-  <bbox_top>5</bbox_top>
+  <bbox_top>3</bbox_top>
   <bbox_bottom>71</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
@@ -23,5 +23,7 @@
     <frame index="0">images\sprSwordParalystAttack1_0.png</frame>
     <frame index="1">images\sprSwordParalystAttack1_1.png</frame>
     <frame index="2">images\sprSwordParalystAttack1_2.png</frame>
+    <frame index="3">images\sprSwordParalystAttack1_3.png</frame>
+    <frame index="4">images\sprSwordParalystAttack1_4.png</frame>
   </frames>
 </sprite>
