@@ -28,7 +28,7 @@
             <string>///start game things
 display_set_gui_size(256,224);
 
-room_goto_next();
+room_goto(roomLevelTest);
 </string>
           </argument>
         </arguments>
